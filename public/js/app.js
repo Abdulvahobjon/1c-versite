@@ -27,64 +27,16 @@ hamburger.addEventListener("click", function() {
     }
 });
 
-let dropdown = document.querySelectorAll(".dropdown")
-let dropdownToggleBtn = document.querySelectorAll(".dropdownToggleBtn")
+let dropdownTop = document.querySelectorAll(".dropdownTop h3");
+let dropdown = document.querySelectorAll(".dropdown");
+let dropdownToggleBtn = document.querySelectorAll(".dropdownToggleBtn");
 
-
-if (window.innerWidth > 768) {
-    dropdownToggleBtn.forEach(function (item, index) {
-        item.addEventListener("click", function () {
-            const isOpen = dropdown[index].classList.contains("h-[220px]");
-            
-            // Hammasini yopish
-            dropdown.forEach(function (dropdownItem, i) {
-                dropdown[i].classList.remove("h-[220px]");
-                dropdown[i].classList.add("md:h-20");
-            });
-            
-            // Agar ochiq bo'lsa yopish, aks holda ochish
-            if (!isOpen) {
-                dropdown[index].classList.add("h-[220px]");
-                dropdown[index].classList.remove("md:h-20");
-            }
-        });
+dropdownToggleBtn.forEach((item, index) => {
+    item.addEventListener('click', function () {
+        if (dropdown[index].style.maxHeight === "0px" || dropdown[index].style.maxHeight === "") {
+            dropdown[index].style.maxHeight = dropdown[index].scrollHeight + "px";
+        } else {
+            dropdown[index].style.maxHeight = "0px";
+        }
     });
-} else if(window.innerWidth > 375) {
-    dropdownToggleBtn.forEach(function (item, index) {
-        item.addEventListener("click", function () {
-            const isOpen = dropdown[index].classList.contains("h-[300px]");
-            
-            // Hammasini yopish
-            dropdown.forEach(function (dropdownItem, i) {
-                dropdown[i].classList.remove("h-[300px]");
-                dropdown[i].classList.add("h-[70px]");
-            });
-            
-            // Agar ochiq bo'lsa yopish, aks holda ochish
-            if (!isOpen) {
-                dropdown[index].classList.add("h-[300px]");
-                dropdown[index].classList.remove("h-[70px]");
-            }
-        });
-    });
-}
-else{
-    dropdownToggleBtn.forEach(function (item, index) {
-        item.addEventListener("click", function () {
-            const isOpen = dropdown[index].classList.contains("h-[300px]");
-            
-            // Hammasini yopish
-            dropdown.forEach(function (dropdownItem, i) {
-                dropdown[i].classList.remove("h-[300px]");
-                dropdown[i].classList.add("h-[70px]");
-            });
-            
-            // Agar ochiq bo'lsa yopish, aks holda ochish
-            if (!isOpen) {
-                dropdown[index].classList.add("h-[300px]");
-                dropdown[index].classList.remove("h-[70px]");
-            }
-        });
-    });
-}
-
+});
